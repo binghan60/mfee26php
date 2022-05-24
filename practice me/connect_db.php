@@ -9,7 +9,7 @@ $dsn = "mysql:host={$db_host};dbname={$db_name};charset=utf8mb4";
 
 $pdo_optopns = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //取資料的方式,會變關聯式陣列
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
 ];
 
@@ -17,4 +17,6 @@ try {
     $pdo = new PDO($dsn, $db_user, $db_pass, $pdo_optopns);
 } catch (PDOException $ex) {
     echo $ex->getMessage();
+
+    // 瘦箭頭相當於JS的.
 }
