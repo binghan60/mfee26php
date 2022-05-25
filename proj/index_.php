@@ -1,4 +1,8 @@
-<?php require __DIR__ . '/parts/connect_db.php' ?>
+<?php require __DIR__ . '/parts/connect_db.php';
+$pageName = 'index';
+$title = '牛奶的網站 - 首頁';
+?>
+
 <?php include __DIR__ . '/parts/html-head.php' ?>
 <?php include __DIR__ . '/parts/navbar.php' ?>
 <div class="container">

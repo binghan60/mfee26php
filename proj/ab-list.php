@@ -1,4 +1,7 @@
 <?php require __DIR__ . '/parts/connect_db.php';
+$pageName = 'ab-list';
+$title = '通訊錄 - 首頁';
+
 $perPage = 5; //每一頁有幾筆
 
 //用戶要看第幾頁

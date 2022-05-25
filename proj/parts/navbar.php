@@ -1,6 +1,11 @@
-
+<?php
+if (!isset($pageName)) {
+    $pageName = '';
+}
+//沒有pagename才不會跳notice塞在class裡
+?>
 <style>
-    .navbar .navbar-nav .nav-link.active  {
+    .navbar .navbar-nav .nav-link.active {
         background-color: #00f;
         color: white;
         font-weight: 800;
@@ -18,10 +23,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index_.php">Home</a>
+                        <a class="nav-link <?= $pageName == 'index' ? 'active' : '' ?>" aria-current="page" href="index_.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ab-list.php">ab-list</a>
+                        <a class="nav-link <?= $pageName == 'ab-list' ? 'active' : '' ?>" href="ab-list.php">ab-list</a>
                     </li>
 
                     </form>
