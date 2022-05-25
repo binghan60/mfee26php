@@ -1,6 +1,4 @@
-<?php 
-if isset()
-?>
+
 <style>
     .navbar .navbar-nav .nav-link.active  {
         background-color: #00f;
