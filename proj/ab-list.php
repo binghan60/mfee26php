@@ -11,8 +11,8 @@ if ($page < 1) {
 
 $t_sql = "SELECT COUNT(1) FROM address_book";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0]; //總筆數
-
-$totalPages = ceil($totalRows/$perPage);//總共有幾頁
+//s$t_sql得到幾筆後用FETCH拿出來,FETCH_NUM索引是陣列的第1筆
+$totalPages = ceil($totalRows / $perPage); //總共有幾頁
 
 // echo $totalRows;exit;
 
@@ -27,6 +27,29 @@ $rows = $pdo->query($sql)->fetchAll();
 <?php include __DIR__ . '/parts/navbar.php' ?>
 
 <div class="container">
+    <div class="orw">
+        <div class="col">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#">Previous</a>
+                    </li>
+
+                    <!-- 產生每一頁的按鈕 -->
+                    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
     <table class="table table-success table-striped">
         <thead>
             <tr>
