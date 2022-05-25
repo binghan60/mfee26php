@@ -1,7 +1,21 @@
 <?php require __DIR__ . '/parts/connect_db.php';
-$perPage = 5;
-//每一頁有幾筆
+$perPage = 5; //每一頁有幾筆
+
+//用戶要看第幾頁
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+//page<1自動轉向回自己,清掉page
+if ($page < 1) {
+    header('Location: ?page=1');
+    exit;
+}
+
+$t_sql = "SELECT COUNT(1) FROM address_book";
+$totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0]; //總筆數
+
+$totalPages = ceil($totalRows/$perPage);//總共有幾頁
+
+// echo $totalRows;exit;
+
 
 $sql = sprintf("SELECT * FROM address_book LIMIT %s ,%s", ($page - 1) * $perPage, $perPage);
 
