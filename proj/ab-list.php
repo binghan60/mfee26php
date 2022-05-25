@@ -14,14 +14,19 @@ $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0]; //總筆數
 //s$t_sql得到幾筆後用FETCH拿出來,FETCH_NUM索引是陣列的第1筆
 $totalPages = ceil($totalRows / $perPage); //總共有幾頁
 
-// echo $totalRows;exit;
+$rows = [];
+if ($totalRows > 0) {
+    //頁碼超出最大值 轉向最大頁
+    if ($page > $totalPages) {
+        header("Location: ?page=$totalPages");
+        exit;
+    }
 
+    $sql = sprintf("SELECT * FROM address_book LIMIT %s ,%s", ($page - 1) * $perPage, $perPage);
+    $rows = $pdo->query($sql)->fetchAll();
+}
 
-$sql = sprintf("SELECT * FROM address_book LIMIT %s ,%s", ($page - 1) * $perPage, $perPage);
-
-$rows = $pdo->query($sql)->fetchAll();
 ?>
-
 
 <?php include __DIR__ . '/parts/html-head.php' ?>
 <?php include __DIR__ . '/parts/navbar.php' ?>
