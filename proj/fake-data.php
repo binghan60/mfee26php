@@ -10,7 +10,7 @@ $sql = "INSERT INTO `address_book`(
     )";
 $stmt = $pdo->query($sql);
 */
-
+//不要用query避免攻擊
 // 避免 SQL injection (SQL 隱碼攻擊)
 $sql = "INSERT INTO `address_book`(
     `name`, `email`, `mobile`, 
@@ -19,8 +19,9 @@ $sql = "INSERT INTO `address_book`(
         ?, ?, ?,
         ?, ?, NOW()
     )";
-
+//準備
 $stmt = $pdo->prepare($sql);
+//執行
 $stmt->execute([
     "李小明's pen",
     'ming@test.com',
@@ -29,5 +30,5 @@ $stmt->execute([
     '南投市',
 ]);
 
-
+//印出新增的筆數
 echo $stmt->rowCount();
