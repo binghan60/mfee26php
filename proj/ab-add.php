@@ -11,8 +11,8 @@ $title = '牛奶的網站 - 新增通訊錄資料';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">新增資料</h5>
-                    <form name="form1">
-                        <div class="mb-3" onsubmit="return false;">
+                    <form name="form1" onsubmit="sendData();return false;" novalidate>
+                        <div class="mb-3">
                             <label for="name" class="form-label">* name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
                             <div class="form-text"></div>
@@ -26,7 +26,7 @@ $title = '牛奶的網站 - 新增通訊錄資料';
                             <form name="form1">
                                 <div class="mb-3">
                                     <label for="mobile" class="form-label">mobile</label>
-                                    <input type="number" class="form-control" id="mobile" name="mobile" pattern="09\d{8}">
+                                    <input type="text" class="form-control" id="mobile" name="mobile" pattern="09\d{8}">
                                     <div class="form-text"></div>
                                 </div>
                                 <form name="form1">
@@ -49,4 +49,15 @@ $title = '牛奶的網站 - 新增通訊錄資料';
     </div>
 </div>
 <?php include __DIR__ . '/parts/scripts.php' ?>
+<script>
+    async function sendData() {
+        const fd = new FormData(document.form1)
+        const r = await fetch('ab-add-api.php', {
+            method: 'POST',
+            body: fd
+        });
+        const result = await r.json();
+        console.log(result)
+    }
+</script>
 <?php include __DIR__ . '/parts/html-foot.php' ?>
