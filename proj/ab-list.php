@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/parts/connect_db.php';
 $pageName = 'ab-list';
-$title = '通訊錄 - 首頁';
+$title = '牛奶的網站 - 通訊錄';
 
 $perPage = 5; //每一頁有幾筆
 
