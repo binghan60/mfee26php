@@ -14,7 +14,7 @@ if ($page < 1) {
 
 $t_sql = "SELECT COUNT(1) FROM address_book";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0]; //總筆數
-//s$t_sql得到幾筆後用FETCH拿出來,FETCH_NUM索引是陣列的第1筆
+//s$t_sql得到幾筆後用FETCH拿出來,FETCH_NUM拿出來是索引式陣列的第1筆
 $totalPages = ceil($totalRows / $perPage); //總共有幾頁
 
 $rows = [];
