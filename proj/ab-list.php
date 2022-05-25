@@ -37,10 +37,14 @@ if ($totalRows > 0) {
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item <?php echo $page == 1 ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=1">first</a>
+                        <a class="page-link" href="?page=1">
+                            <i class="fa-solid fa-angles-left"></i>
+                        </a>
                     </li>
                     <li class="page-item <?php echo $page == 1 ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a>
+                        <a class="page-link" href="?page=<?= $page - 1 ?>">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </a>
                     </li>
 
                     <!-- 產生每一頁的按鈕 從page-5到page+5-->
@@ -54,10 +58,14 @@ if ($totalRows > 0) {
                     <?php endif;
                     endfor; ?>
                     <li class="page-item <?php echo $page == $totalPages ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
+                        <a class="page-link" href="?page=<?= $page + 1 ?>">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </a>
                     </li>
                     <li class="page-item <?php echo $page == $totalPages ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=<?= $totalPages ?>">last</a>
+                        <a class="page-link" href="?page=<?= $totalPages ?>">
+                            <i class="fa-solid fa-angles-right"></i>
+                        </a>
                     </li>
                 </ul>
             </nav>
