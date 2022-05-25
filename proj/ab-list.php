@@ -37,18 +37,27 @@ if ($totalRows > 0) {
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item <?php echo $page == 1 ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=1">first</a>
+                    </li>
+                    <li class="page-item <?php echo $page == 1 ? 'disabled' : '' ?>">
                         <a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a>
                     </li>
 
-                    <!-- 產生每一頁的按鈕 -->
-                    <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
-                        <!-- page跑到跟i一樣就反白 -->
-                        <li class="page-item <?php echo $page == $i ? 'active' : '' ?>">
-                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                        </li>
-                    <?php endfor; ?>
+                    <!-- 產生每一頁的按鈕 從page-5到page+5-->
+                    <?php for ($i = $page - 5; $i <= $page + 5; $i++) :
+                        if ($i >= 1 and $i <= $totalPages) :
+                    ?>
+                            <!-- page跑到跟i一樣就反白 -->
+                            <li class="page-item <?php echo $page == $i ? 'active' : '' ?>">
+                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                            </li>
+                    <?php endif;
+                    endfor; ?>
                     <li class="page-item <?php echo $page == $totalPages ? 'disabled' : '' ?>">
                         <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
+                    </li>
+                    <li class="page-item <?php echo $page == $totalPages ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $totalPages ?>">last</a>
                     </li>
                 </ul>
             </nav>
