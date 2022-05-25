@@ -19,14 +19,6 @@ if (empty($_POST['name'])) {
 
 
 
-
-
-
-
-
-
-
-
 $sql = "INSERT INTO `address_book`(
     `name`, `email`, `mobile`, `birthday`, `address`, `created_at`) VALUES (
     ?,?,?,
@@ -45,6 +37,8 @@ $stmt->execute([
 
 if ($stmt->rowCount() == 1) {
     $output['success'] = true;
+    // 最近新增資料的primarykey
+    $output['lastInsertId'] = $pdo->lastInsertId();
 } else {
     $output['error'] = '資料無法新增';
 }
