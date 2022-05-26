@@ -23,9 +23,9 @@ $hobbies = [
         <div class="row">
             <div class="col-lg-6">
 
-                <form name="form1" onsubmit="return false;">
+                <form name="form1" onsubmit="sendData();return false;">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">嗜好 1</label>
+                        <label for="" class="form-label">嗜好 1</label>
                         <!-- combobox -->
                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" data-multiple name="hobby1">
 
@@ -38,7 +38,7 @@ $hobbies = [
                     </div>
 
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">嗜好 2</label>
+                        <label for="" class="form-label">嗜好 2</label>
                         <?php foreach ($hobbies as $k => $v) : ?>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="hobby2" id="hobby2-<?= $k ?>" value="<?= $k ?>">
@@ -48,6 +48,20 @@ $hobbies = [
                             </div>
                         <?php endforeach; ?>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="" class="form-label">嗜好 3</label>
+                        <?php foreach ($hobbies as $k => $v) : ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="hobby3[]" value="<?= $k ?>" id="hobby3-<?= $k ?>">
+                                <label class="form-check-label" for="hobby3-<?= $k ?>">
+                                    <?= $v ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <input type="hidden" name="test[]" value="hello">
+                    <input type="hidden" name="test[]" value="哈囉">
 
 
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -60,6 +74,22 @@ $hobbies = [
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        /*
+        document.querySelectorAll('input[name=hobby3\\[\\]]').forEach(e=>console.log(e.checked, e.value));
+        */
+        async function sendData() {
+            const fd = new FormData(document.form1);
+
+            const r = await fetch('a20220526-02-forms-api.php', {
+                method: 'POST',
+                body: fd,
+            });
+            const result = await r.json();
+
+            console.log(result);
+        }
+    </script>
 </body>
 
 </html>
