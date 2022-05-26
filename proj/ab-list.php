@@ -75,45 +75,48 @@ if ($totalRows > 0) {
         </div>
     </div>
 
-
-    <table class="table table-success table-striped">
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th scope="col">
-                    <i class="fa-solid fa-trash-can"></i>
-                </th>
+                <th scope="col"><i class="fa-solid fa-trash-can"></i></th>
                 <th scope="col">#</th>
                 <th scope="col">姓名</th>
                 <th scope="col">手機</th>
-                <th scope="col">電話</th>
+                <th scope="col">電郵</th>
                 <th scope="col">生日</th>
                 <th scope="col">地址</th>
-                <th scope="col">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </th>
+                <th scope="col"><i class="fa-solid fa-pen-to-square"></i></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($rows as $r) : ?>
                 <tr>
                     <td>
-                        <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+                        <a href="ab-delete.php?sid=<?= $r['sid'] ?>">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
                     </td>
-                    <td><?= $r["sid"] ?></td>
-                    <td><?= $r["name"] ?></td>
-                    <td><?= $r["mobile"] ?></td>
-                    <td><?= $r["email"] ?></td>
-                    <td><?= $r["birthday"] ?></td>
-                    <td><?= $r["address"] ?></td>
+                    <td><?= $r['sid'] ?></td>
+                    <td><?= $r['name'] ?></td>
+                    <td><?= $r['mobile'] ?></td>
+                    <td><?= $r['email'] ?></td>
+                    <td><?= $r['birthday'] ?></td>
+                    <td><?= $r['address'] ?></td>
                     <td>
-                        <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="ab-edit.php?sid=<?= $r['sid'] ?>">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
 
     </table>
+
+
 </div>
+
+
 
 <?php include __DIR__ . '/parts/scripts.php' ?>
 <?php include __DIR__ . '/parts/html-foot.php' ?>
