@@ -36,6 +36,7 @@ if (empty($row)) {
                 <div class="card-body">
                     <h5 class="card-title">編輯資料</h5>
                     <form name="form1" onsubmit="sendData();return false;" novalidate>
+                        <input type="hidden" name="sid" value="<?= $row['sid'] ?>">
                         <div class="mb-3">
                             <label for="name" class="form-label">* name</label>
                             <input type="text" class="form-control" id="name" name="name" required value="<?= htmlentities($row['name']) ?>">
@@ -43,7 +44,7 @@ if (empty($row)) {
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">email</label>
-                            <input type="email" class="form-control" id="email" name="email" v alue="<?= $row['email'] ?>">
+                            <input type="email" class="form-control" id="email" name="email" value="<?= $row['email'] ?>">
                             <div class="form-text red"></div>
                         </div>
                         <div class="mb-3">
@@ -132,7 +133,7 @@ if (empty($row)) {
         }
 
         const fd = new FormData(document.form1);
-        const r = await fetch('ab-add-api.php', {
+        const r = await fetch('ab-edit-api.php', {
             method: 'POST',
             body: fd,
         });
@@ -142,7 +143,7 @@ if (empty($row)) {
         if (result.success) {
             info_bar.classList.remove('alert-danger');
             info_bar.classList.add('alert-success');
-            info_bar.innerText = '新增成功';
+            info_bar.innerText = '修改成功';
 
             setTimeout(() => {
                 // location.href = 'ab-list.php'; // 跳轉到列表頁
@@ -150,7 +151,7 @@ if (empty($row)) {
         } else {
             info_bar.classList.remove('alert-success');
             info_bar.classList.add('alert-danger');
-            info_bar.innerText = result.error || '資料無法新增';
+            info_bar.innerText = result.error || '資料無法修改';
         }
 
     }

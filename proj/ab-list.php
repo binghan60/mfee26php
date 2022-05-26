@@ -35,7 +35,7 @@ if ($totalRows > 0) {
 <?php include __DIR__ . '/parts/navbar.php' ?>
 
 <div class="container">
-    <div class="orw">
+    <div class="row">
         <div class="col">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
@@ -106,9 +106,9 @@ if ($totalRows > 0) {
                     <td><?= $r['email'] ?></td>
                     <td><?= $r['birthday'] ?></td>
                     <!--
-+                    <td><?= htmlentities($r['address']) ?></td>
-+            -->
-                    + <td><?= strip_tags($r['address']) ?></td>
+                    <td><?= htmlentities($r['address']) ?></td>
+            -->
+                    <td><?= strip_tags($r['address']) ?></td>
                     <td>
                         <a href="ab-edit.php?sid=<?= $r['sid'] ?>">
                             <i class="fa-solid fa-pen-to-square"></i>
