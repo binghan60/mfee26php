@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <button onclick="doPush('bill')">Bill</button>
+        <button onclick="doPush('david')">David</button>
+    </body>
+    <script>
+        const doPush = (name) => {
+            history.pushState({ name }, null, "?name=" + name);
+
+            // history.pushState({ name: "bill" }, null, "?name=bill"); // query string
+            // history.pushState({ name: "bill" }, null, "/abc/def"); // path
+            //history.pushState({ name: "bill" }, null, "https://tw.yahoo.com"); // 沒有作用
+        };
+
+        window.addEventListener("popstate", (event) => {
+            console.log(event.state);
+            console.log(location.search);
+        });
+    </script>
+</html>
