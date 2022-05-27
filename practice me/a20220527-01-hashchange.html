@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            width: 300px;
+            height: 800px;
+            background-color: #f5cd52;
+        }
+    </style>
+</head>
+<body>
+    <a href="#aa">aa</a>
+    <a href="#bb">bb</a>
+    <a href="#cc">cc</a>
+    <div class="box" id="aa"">
+    </div>
+    <div class="box" id="bb" style="background-color: #69c8f1"></div>
+    <div class="box" id="cc" style="background-color: #9ddc5e"></div>
+    <div>
+        <a href="">
+            <a href="#aa">aa</a>
+            <a href="#bb">bb</a>
+            <a href="#cc">cc</a>
+        </a>
+    </div>
+    <script>
+        window.addEventListener('hashchange',function() {
+            console.log(location.hash)
+        })
+        //hash缺點只能放字串不能放陣列...
+    </script>
+</body>
+</html>
