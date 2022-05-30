@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form name="main_form" onsubmit="return false;">
+            <input type="text" name="name" placeholder="姓名" />
+            <br />
+            <button type="button" id="btn" onclick="uploadPhotos()">
+                上傳多張照片
+            </button>
+            <input type="hidden" name="photos" value="[]" />
+            <br />
+            <div id="photo_container"></div>
+
+            <input type="date" name="bithday" placeholder="生日" />
+            <br />
+
+            <input type="submit" />
+        </form>
+
+        <form name="form1" style="display: none">
+            <input type="file" name="photos[]" accept="image/*" multiple />
+        </form>
+
+        <br />
+
+        <script>
+            const btn = document.querySelector("#btn");
+            const photo_container = document.querySelector("#photo_container");
+            const photos = document.form1.elements[0];
+
+            const photoItem = (f) => {
+                return `
+                <div class="photoItem" style="display: inline-block" data-f="${f}">
+                    <img src="./uploaded/${f}" alt="" />    
+                </div>
+                `;
+            };
+
+            photos.addEventListener("change", async function () {
+                // 上傳表單
+                const fd = new FormData(document.form1);
+                const r = await fetch("upload-photos-api.php", {
+                    method: "POST",
+                    body: fd,
+                });
+                const obj = await r.json();
+                console.log(obj);
+                //myimg.src = "./uploaded/" + obj.filenames;
+                if (obj.filenames && obj.filenames.length) {
+                    photo_container.innerHTML += obj.filenames
+                        .map((f) => photoItem(f))
+                        .join("");
+                }
+                const photoAr = [];
+                document.querySelectorAll(".photoItem").forEach((el) => {
+                    photoAr.push(el.getAttribute("data-f"));
+                });
+                document.main_form.photos.value = JSON.stringify(photoAr);
+            });
+
+            function uploadPhotos() {
+                photos.click(); // 模擬點擊
+            }
+        </script>
+    </body>
+</html>
