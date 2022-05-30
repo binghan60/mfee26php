@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <form
+            name="form1"
+            action="upload-avatar-api.php"
+            method="post"
+            enctype="multipart/form-data"
+            style="display: none"
+        >
+            <input type="file" name="avatar" accept="image/*" />
+        </form>
+
+        <button id="btn" onclick="uploadAvatar()">上傳大頭貼</button>
+        <br />
+        <img id="myimg" src="" alt="" />
+        <script>
+            const btn = document.querySelector("#btn");
+            const myimg = document.querySelector("#myimg");
+            const avatar = document.form1.avatar;
+
+            avatar.addEventListener("change", async function () {
+                // 上傳表單
+                const fd = new FormData(document.form1);
+                const r = await fetch("upload-avatar-api.php", {
+                    method: "POST",
+                    body: fd,
+                });
+                const obj = await r.json();
+                console.log(obj);
+                myimg.src = "./uploaded/" + obj.filename;
+            });
+
+            function uploadAvatar() {
+                avatar.click(); // 模擬點擊
+            }
+        </script>
+    </body>
+</html>
